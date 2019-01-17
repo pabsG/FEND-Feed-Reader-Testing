@@ -12,7 +12,7 @@ This is a simple RSS feed reader application that takes different feeds as speci
 
 The intent of this project was to understand how to write a test file against the Javascript provided. All the HTML, CSS, and the app.js files were provided by Udacity. I wrote the feedreader.js file using Jasmine's development framework.
 
-For more information on Jasmine visit [jasmine.github.io](jasmine.github.io).
+For more information on Jasmine visit [jasmine.github.io](https://jasmine.github.io).
 
 ## RSS Feeds
 
