@@ -27,7 +27,7 @@ $(function() {
          for (let i = 0; i < allFeeds.length; i++) {
            it('should have URL', function() {
              expect(allFeeds[i].url).toBeDefined();
-             expect(allFeeds[i].url).not.toBe(0);
+             expect(allFeeds[i].url).not.toBe(" ");
            });
          };
 
@@ -38,7 +38,7 @@ $(function() {
          for (let i = 0; i < allFeeds.length; i++) {
            it('should have a name', function() {
              expect(allFeeds[i].name).toBeDefined();
-             expect(allFeeds[i].name).not.toBe(0);
+             expect(allFeeds[i].name).not.toBe(" ");
            });
          };
     });
