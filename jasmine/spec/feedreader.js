@@ -89,11 +89,7 @@ $(function() {
          loadFeed(0, done);
        });
        it('call the loadFeed function and make sure it completes its work', function() {
-
-         /* This variable stores the feed's inner html to check for later */
-
-         var initialEntryFeed = document.querySelector('.feed').innerHTML;
-         expect(initialEntryFeed).toBeDefined();
+         expect(document.querySelector('.feed').children;).toBeGreaterThan(0);
        });
      });
 
