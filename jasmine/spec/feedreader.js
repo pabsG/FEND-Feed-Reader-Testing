@@ -15,33 +15,22 @@ $(function() {
          * page?
          */
 
-        it('are defined', function() {
+        it('are defined, have a URL and function', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
+
+            /* This test loops through each feed using a for loop and
+             * makes sure that all feed urls and names are defined and not empty.
+             */
+
+            allFeeds.forEach(function(feed){
+              expect(feed.url).toBeDefined();
+              expect(feed.url).not.toBe(" ");
+              expect(feed.name).toBeDefined();
+              expect(feed.name).not.toBe(" ");
+            });
         });
-
-        /* This test loops through each feed using a for loop and
-         * makes sure that all feed urls are defined and not empty.
-         */
-
-         for (let i = 0; i < allFeeds.length; i++) {
-           it('should have URL', function() {
-             expect(allFeeds[i].url).toBeDefined();
-             expect(allFeeds[i].url).not.toBe(" ");
-           });
-         };
-
-        /* This test loops through each feed using a for loop and
-         * makes sure that all names are defined and not empty.
-         */
-
-         for (let i = 0; i < allFeeds.length; i++) {
-           it('should have a name', function() {
-             expect(allFeeds[i].name).toBeDefined();
-             expect(allFeeds[i].name).not.toBe(" ");
-           });
-         };
-    });
+      });
 
     /* Menu test suite */
 
@@ -89,7 +78,7 @@ $(function() {
          loadFeed(0, done);
        });
        it('call the loadFeed function and make sure it completes its work', function() {
-         expect(document.querySelector('.feed').children;).toBeGreaterThan(0);
+         expect(document.querySelector('.feed').children.length).toBeGreaterThan(0);
        });
      });
 
@@ -107,19 +96,18 @@ $(function() {
        * against the loadFeed inner html in index 1
        */
 
-       beforeEach(function(done) {
+        beforeEach(function(done) {
          loadFeed(0, function () {
            var firstFeed = document.querySelector('.entry').innerHTML;
            feeds.push(firstFeed);
-           done();
-         });
-         loadFeed(1, function() {
-           var secondFeed = document.querySelector('.entry').innerHTML;
-           feeds.push(secondFeed);
-           done();
+           loadFeed(1, function() {
+             var secondFeed = document.querySelector('.entry').innerHTML;
+             feeds.push(secondFeed);
+             done();
+           });
          });
        });
-       it('change content when a new feed is loaded', function() {
+       it('changes content when a new feed is loaded', function() {
          expect(feeds[0] != feeds[1]).toBe(true);
        });
     });
