@@ -15,22 +15,34 @@ $(function() {
          * page?
          */
 
-        it('are defined, have a URL and function', function() {
+        it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
-
-            /* This test loops through each feed using a for loop and
-             * makes sure that all feed urls and names are defined and not empty.
-             */
-
-            allFeeds.forEach(function(feed){
-              expect(feed.url).toBeDefined();
-              expect(feed.url).not.toBe(" ");
-              expect(feed.name).toBeDefined();
-              expect(feed.name).not.toBe(" ");
-            });
         });
-      });
+
+        /* This test loops through each feed using a for loop and
+         * makes sure that all feed urls are defined and not empty.
+         */
+
+
+         allFeeds.forEach(function(feed){
+           it('Feeds URL should be defined and not empty', function(){
+             expect(feed.url).toBeDefined();
+             expect(feed.url).not.toBe("");
+           });
+         });
+
+        /* This test loops through each feed using a for loop and
+         * makes sure that all names are defined and not empty.
+         */
+
+         allFeeds.forEach(function(feed){
+           it('Feeds should have a name and not be empty', function(){
+             expect(feed.name).toBeDefined();
+             expect(feed.name).not.toBe("");
+           });
+         });
+    });
 
     /* Menu test suite */
 
@@ -69,17 +81,26 @@ $(function() {
 
     describe('Initial Entries', function() {
 
-      /* This test checks the feed's inner html and makes sure it is present
-       * if this test is true, it means that the loadFeed function is working
+      /* This test checks the feed's children elements and looks for a .entry
+       * class. It also checks that our function has loaded at least one element.
+       * If this test is true, it means that the loadFeed function is working
        * as expected.
        */
 
        beforeEach(function(done) {
          loadFeed(0, done);
        });
-       it('call the loadFeed function and make sure it completes its work', function() {
-         expect(document.querySelector('.feed').children.length).toBeGreaterThan(0);
+
+       let feed = document.querySelector('.feed');
+       let entries = document.getElementsByClassName('entry');
+
+       it('load feeds function gets at least one feed', function() {
+         expect(feed.children.length > 0).toBe(true);
        });
+
+           it('load feeds function places entries under the feed element', function(){
+           expect(feed.contains(entries[0])).toBe(true);
+         });
      });
 
 
@@ -92,11 +113,11 @@ $(function() {
       var feeds = [];
 
       /* This test makes sure that when a new feed is loaded, the content of the feed
-       * actually changes. Uwe accomplish this by checking the loadFeed inner html in index 0
+       * actually changes. We accomplish this by checking the loadFeed inner html in index 0
        * against the loadFeed inner html in index 1
        */
 
-        beforeEach(function(done) {
+       beforeEach(function(done) {
          loadFeed(0, function () {
            var firstFeed = document.querySelector('.entry').innerHTML;
            feeds.push(firstFeed);
